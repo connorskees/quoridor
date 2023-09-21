@@ -1,33 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.scss'
+
+function isAdjacent(a: number, b: number): boolean {
+  throw new Error();
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [onePosition, setOnePosition] = React.useState(4);
+  const [twoPosition, setTwoPosition] = React.useState(9 * 8 + 4);
+
+  const [activePlayer, setActivePlayer] = React.useState(0);
+
+  const board = Array.from(Array(9 * 9).keys());
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='squares-container'>
+        {board.map((r) => <div className={`cell ${r === onePosition ? 'one' : r === twoPosition ? 'two' : ''}`}></div>)}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
