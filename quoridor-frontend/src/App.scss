@@ -44,35 +44,56 @@
 .squares-container {
   display: grid;
   width: 100%;
-  grid-template-rows: repeat(9, 10%);
-  grid-template-columns: repeat(9, 10%);
-  gap: 8px;
 
   .cell {
     background-color: red;
+    max-width: 50px;
+    max-height: 50px;
     width: min(8vw, 8vh);
     height: min(8vw, 8vh);
     transition: background-color 50ms;
     cursor: pointer;
-    border: 1px solid black;
 
-    &.one {
+    &.selectedSquare {
+      background-color: lighten(red, 20%);
+      &:hover {
+        background-color: lighten(red, 15%);
+      }
+    }
+
+    &.short-row {
+      height: 10px;
+      background-color: brown;
+    }
+
+    &.short-column {
+      width: 10px;
+      background-color: brown;
+    }
+
+    &.player-0 {
       background-color: yellow;
+
+      &.selectedSquare {
+        background-color: green;
+      }
 
       &:hover {
         background-color: darken(yellow, 20%);
       }
     }
 
-    &.two {
+    &.player-1 {
       background-color: orange;
-
+      &.selectedSquare {
+        background-color: purple;
+      }
       &:hover {
         background-color: darken(orange, 20%);
       }
     }
 
-    &:not(.one):not(.two):hover {
+    &:not(.player-0):not(.player-1):not(.selectedSquare):hover {
       background-color: darken(red, 20%);
     }
   }
